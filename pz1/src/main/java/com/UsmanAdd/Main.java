@@ -12,6 +12,7 @@ public class Main {
         int answer;
         int numberOfDots = 0;
 
+
         System.out.println("Введите слово-фильтр/фразу-фильтр");
         filter = scanner.nextLine();
         System.out.println("Введите ваш текст");
