@@ -3,6 +3,8 @@ package com.UsmanAdd;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WorkWithFile{
         private String file;
@@ -23,10 +25,23 @@ public class WorkWithFile{
         }
 
         public void spilling(String filter) {
+            //Поиск с помощью regex
+            String filterUp = filter.toUpperCase();
+            String regex = "((^"+filterUp + "|\\s" + filterUp +")[\\s|,|?|...|.|!|:])|(\\s" + filterUp +"[,|.|\\?|!|;|:]*$)";
+            Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+
+            for (int i = 0; i < text.size(); i++){
+                Matcher matcher = pattern.matcher(text.get(i).toUpperCase());
+                while(matcher.find()){
+                    System.out.println(text.get(i));
+                    break;
+                }
+            }
+
+            /* Обычный поиск
             String[] line;
             String[] filterLine;
             filterLine = filter.split(" ");
-
             for (int i = 0; i < text.size(); i++) {
                 if (filterLine.length == 1) {
                     line = text.get(i).split(" ");
@@ -43,7 +58,7 @@ public class WorkWithFile{
                         System.out.println(text.get(i));
                     }
                 }
-            }
+            } */
         }
 
         private void display(){
